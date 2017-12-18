@@ -29,7 +29,7 @@ void draw(){
   
   
   noStroke();
-  fill(color(a % 255, 255, 255));
+  fill(color(n % 255, 255, 255));
   ellipse(x, y, c + 2, c + 2);
   
   //In next cycle draw the next ellipse
