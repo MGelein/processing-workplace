@@ -23,7 +23,18 @@ class Textures{
   SpriteSheet shield;
   SpriteSheet tool;
   SpriteSheet wand;
+  SpriteSheet fence;
+  SpriteSheet tile;
   
+  AnimatedSheet decor;
+  AnimatedSheet door;
+  AnimatedSheet effect;
+  AnimatedSheet ground;
+  AnimatedSheet hill;
+  AnimatedSheet map;
+  AnimatedSheet ore;
+  AnimatedSheet trap;
+  AnimatedSheet tree;
   AnimatedSheet pit;
   AnimatedSheet gui;
   AnimatedSheet chest;
@@ -47,9 +58,20 @@ class Textures{
   
   Textures(){
     //Objects
-    wall = new SpriteSheet(16, loadImage("Dawnlike/Objects/Wall.png"));
+    decor = new AnimatedSheet(16, "Objects/Decor0.png", "Objects/Decor1.png");
+    door = new AnimatedSheet(16, "Objects/Door0.png", "Objects/Door1.png");
+    effect = new AnimatedSheet(16, "Objects/Effect0.png", "Objects/Effect1.png");
+    fence = new SpriteSheet(16, loadImage("Dawnlike/Objects/Fence.png"));
     floor = new SpriteSheet(16, loadImage("Dawnlike/Objects/Floor.png"));
+    ground = new AnimatedSheet(16, "Objects/Ground0.png", "Objects/Ground1.png");
+    hill = new AnimatedSheet(16, "Objects/Hill0.png", "Objects/Hill1.png");
+    map = new AnimatedSheet(16, "Objects/Map0.png", "Objects/Map1.png");
+    ore = new AnimatedSheet(16, "Objects/Ore0.png", "Objects/Ore1.png");
     pit = new AnimatedSheet(16, "Objects/Pit0.png", "Objects/Pit1.png");
+    tile = new SpriteSheet(16, loadImage("Dawnlike/Objects/Tile.png"));
+    trap = new AnimatedSheet(16, "Objects/Trap0.png", "Objects/Trap1.png");
+    tree = new AnimatedSheet(16, "Objects/Tree0.png", "Objects/Tree1.png");
+    wall = new SpriteSheet(16, loadImage("Dawnlike/Objects/Wall.png"));
     
     //GUI
     gui = new AnimatedSheet(16, "GUI/GUI0.png", "GUI/GUI1.png");
@@ -152,10 +174,10 @@ class SpriteSheet{
   }
   
   PImage get(int index){
-    return sprites[index]; 
+    return sprites[index % sprites.length]; 
   }
   
   PImage get(int x, int y){
-    return sprites[x + y * cols];
+    return get(x + y * cols);
   }
 }

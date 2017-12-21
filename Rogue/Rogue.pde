@@ -36,6 +36,9 @@ void draw(){
   image(stage, 0, 0, width, height);
 }
 
+void mousePressed(){ game.mouseDown(floor(mouseX / SCL), floor(mouseY / SCL)); }
+void mouseReleased(){ game.mouseUp(floor(mouseX / SCL), floor(mouseY / SCL)); }
+
 /**
 KEY HANDLING
 **/
