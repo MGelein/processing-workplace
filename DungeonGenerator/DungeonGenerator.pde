@@ -1,5 +1,5 @@
 //CONSTANTS
-int SIZE = 16;
+int SIZE = 4;
 int WALL = 0;
 int FLOOR = 1;
 int ROOM = 2;
@@ -16,7 +16,7 @@ ArrayList<Room> rooms;
   
 
 void setup(){
-  size(816, 816);
+  size(804, 804);
   
   cols = floor(width / SIZE);
   rows = floor(height / SIZE);
