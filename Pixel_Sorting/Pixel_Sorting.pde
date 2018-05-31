@@ -16,28 +16,21 @@ void setup(){
 
 void draw(){
   sorted.loadPixels();
-  
+  color temp;
   if(i < sorted.pixels.length){
     int times = 0;
-    while(times < 10){
+    while(times < 5){
       times++;
-      float record = -1;
-        int selectedPixel = i;
-        for(int j = i; j < sorted.pixels.length; j++){
-          color pix = sorted.pixels[j];
-          float b = saturation(pix);
-          if(b > record){
-            selectedPixel = j;
-            record = b;
+      for(int j = 0; j < sorted.pixels.length - 1; j++){
+          if(hue(sorted.pixels[j]) < hue(sorted.pixels[j + 1])){
+            temp = sorted.pixels[j];
+            sorted.pixels[j] = sorted.pixels[j + 1];
+            sorted.pixels[j + 1] = temp;
           }
-        }
-        //Swap the selected with i
-        color temp = sorted.pixels[selectedPixel];
-        sorted.pixels[selectedPixel] = sorted.pixels[i];
-        sorted.pixels[i] = temp;
-      sorted.updatePixels();
+      }
       i++;
     }
+    sorted.updatePixels();
   }
   
   background(0);
