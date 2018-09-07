@@ -62,13 +62,15 @@ void draw() {
     pixels[i] = lerpColor(color(0), pixels[i], 0.5);
   }  
   
+  background(255);
+  
   
   updatePixels();
   hueOverlay.updatePixels();
   brightOverlay.updatePixels();
   satOverlay.updatePixels();
   
-  image(hueOverlay, 0, 0);
-  image(satOverlay, 0, 0);
+  //image(hueOverlay, 0, 0);
+  //image(satOverlay, 0, 0);
   image(brightOverlay, 0, 0);
 }
