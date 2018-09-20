@@ -13,7 +13,7 @@ Cell current;
 
 void setup(){
   size(400, 400);
-  frameRate(2);
+  frameRate(60);
   
   cols = int(width / SIZE);
   rows = int(height / SIZE);

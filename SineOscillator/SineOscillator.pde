@@ -16,6 +16,7 @@ void setup(){
   //Set frequency and amplitude to 0 to start
   osc.freq(0);
   osc.amp(0);
+  osc.play();
 }
 
 void draw(){
