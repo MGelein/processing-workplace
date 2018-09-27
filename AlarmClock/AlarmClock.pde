@@ -3,8 +3,8 @@ import processing.sound.*;
 String alarmTime = "08:00";
 String alarmUrl = "https://www.youtube.com/watch?v=NlprozGcs80";
 
-int alarmHours = 22;
-int alarmMins  = 44;
+int alarmHours = 8;
+int alarmMins  = 0;
 
 void setup(){
   size(640, 360);
