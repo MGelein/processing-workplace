@@ -26,6 +26,7 @@ class UI {
 
   /**Draws the score Text*/
   void renderScore() {
+    fill(gameColor);
     //Draw score text
     textSize(textHeight);
     String scoreText = "Score: " + player.score;
@@ -79,6 +80,7 @@ class UI {
   /**Draws the play cue*/
   void renderCue() {
     //Draw cue text
+    fill(gameColor);
     textSize(textHeight);
     String text = "Tap to start!";
     scoreX += ((textWidth(text) * -.5f) - scoreX) * .1f;

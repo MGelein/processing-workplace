@@ -1,4 +1,5 @@
 import processing.sound.*; //<>//
+import java.lang.System;
 
 // The circle in the center of the screen
 Circle circle;
@@ -58,12 +59,13 @@ void draw() {
   int t = millis();
   int delta = t - time;
   time = t;
-  //Set background to black
+    
+  //Set background to black with alpha
   actualAlpha += (targetAlpha - actualAlpha) * 0.1;
   fill(color(0, 0, 0, actualAlpha));
   noStroke();
   rect(0, 0, width * 2, height * 2);
-
+  
   //Before any rendering, make 0, 0 the center of the screen, or slightly lower
   translate(width / 2, height / 2 + player.radius + yOff);
   yOff += yShake;
@@ -77,6 +79,12 @@ void draw() {
   strokeWeight(gameWeight);
   stroke(gameColor);
   fill(gameColor);
+  
+  //First render the FFT, but do it without yOffset
+  translate(0, -yOff);
+  sound.render();
+  translate(0, yOff);
+
 
   //Render, but not update outside of game
   circle.render();
@@ -104,6 +112,7 @@ void draw() {
     if (circle.collision(player)) {
       runningGame = false;
       sound.startMenu();
+      registerScore();
     }
   } else {
     //If we're not running, show the play cue
@@ -166,4 +175,9 @@ void keyReleased() {
   if (keyCode == 32 || keyCode == 38) { 
     player.keyDown = false;
   }
+}
+
+//Returns the username of the user currently logged on
+String getUserName(){
+  return System.getProperty("user.name");
 }

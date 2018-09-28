@@ -93,3 +93,9 @@ class Ripple {
     ellipse(0, 0, size, size);
   }
 }
+
+
+//Registers the score online
+void registerScore(){
+  loadStrings("https://www.interwing.nl/runner/score.php?s=" + player.score + "&u=" + getUserName().trim() + "&t=" + millis());
+}

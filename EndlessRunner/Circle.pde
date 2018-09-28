@@ -44,10 +44,11 @@ class Circle {
     //First draw the hurdles at their given rotation
     for (Hurdle h : hurdles) h.render();
     //Draws the ellipse
-    noFill();
+    fill(0);
     stroke(gameColor);
     strokeWeight(gameWeight);
     ellipse(0, 0, radius * 2, radius * 2);
+    noFill();
 
     //Now draw the rotate lines. these create the effect that the hurdles get blown out
     strokeWeight(1);
