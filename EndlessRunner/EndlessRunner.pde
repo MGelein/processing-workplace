@@ -15,22 +15,31 @@ boolean needsJump = false;
 boolean runningGame = false;
 //The global color variable
 color gameColor;
+//The strokeWeiht of the game
+int gameWeight = 3;
 // Amount of millis passed in last frame
 int time = 0;
+// Amount of alpha we want to have, this is for the fase effect
+int targetAlpha = 150;
+// The amount of alpha we have right now for the fase effect
+float actualAlpha = 150;
+//Values to make the screen shake
+float yShake = 0;
+float yOff = 0;
 
 /**
  Entry point
  **/
 void setup() {
-  //Set the size to 640x640 px
-  size(640, 640);
+  //Set the size to 1280 x 720 px
+  size(1280, 720);
   //Set background to black
   background(0);
 
   //Initialize the sound
   sound = new Sound(this);
   //Initialize the circle
-  circle = new Circle(220);
+  circle = new Circle(height * .35f);
   //Initialzie the player
   player = new Player(circle);
   //Initialize the ui
@@ -50,23 +59,29 @@ void draw() {
   int delta = t - time;
   time = t;
   //Set background to black
-  background(0);
+  actualAlpha += (targetAlpha - actualAlpha) * 0.1;
+  fill(color(0, 0, 0, actualAlpha));
+  noStroke();
+  rect(0, 0, width * 2, height * 2);
 
   //Before any rendering, make 0, 0 the center of the screen, or slightly lower
-  translate(width / 2, height / 2 + player.radius);
+  translate(width / 2, height / 2 + player.radius + yOff);
+  yOff += yShake;
+  yShake *= 0.99f;
+  yOff *= 0.6f;
 
   //Set the gameColor
   gameColor = color(player.jumps, 255, 255);
 
   //Set the strokeWeight and color
-  strokeWeight(3);
+  strokeWeight(gameWeight);
   stroke(gameColor);
   fill(gameColor);
 
   //Render, but not update outside of game
   circle.render();
   player.render();
-  
+
   //Only update the game if we need to do it
   if (runningGame) {
     //If we're running render the score
@@ -90,7 +105,7 @@ void draw() {
       runningGame = false;
       sound.startMenu();
     }
-  }else{
+  } else {
     //If we're not running, show the play cue
     ui.renderCue();
   }
@@ -115,6 +130,11 @@ void keyPressed() {
   //Input is either up or spacebar
   if (keyCode == 32 || keyCode == 38) {
     needsJump = true;
+  }
+  
+  //Use escape to exit
+  if(key == ESC){
+    exit();
   }
 }
 /**

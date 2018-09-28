@@ -72,13 +72,15 @@ class Player {
    **/
   void render() {
     //Now draw the player
+    stroke(gameColor);
+    strokeWeight(gameWeight);
     ellipse(0, y, radius * 2, radius * 2);
   }
-  
+
   /**
-  Amount of degrees of the circle that are considered 'dangerous'
-  **/
-  float getSpread(){
+   Amount of degrees of the circle that are considered 'dangerous'
+   **/
+  float getSpread() {
     //Radius times two, cause we need the angle spread of the diameter, not radius of the player
     return ((radius * 2 + 3) / (abs(TWO_PI * y))) * 360;
   }
