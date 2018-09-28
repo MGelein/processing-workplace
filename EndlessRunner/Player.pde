@@ -45,6 +45,8 @@ class Player {
     score = 0;
     keyDown = false;
     update();
+    //Now also start playing menumusic
+    sound.startMenu();
   }
 
   //Update applies a little bit of physics

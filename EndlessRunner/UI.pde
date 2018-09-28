@@ -1,3 +1,6 @@
+/**
+Holds all the (VERY DIRTY) ui code.
+**/
 class UI{
   
   float textHeight;
