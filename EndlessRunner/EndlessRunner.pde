@@ -27,6 +27,8 @@ float actualAlpha = 150;
 //Values to make the screen shake
 float yShake = 0;
 float yOff = 0;
+//Timeout value, as long as this is >0 no key input is accepted
+int timeout = 0;
 
 /**
  Entry point
@@ -111,12 +113,19 @@ void draw() {
     //Now do collision check and break out of game if necessary
     if (circle.collision(player)) {
       runningGame = false;
+      timeout = 200;
       sound.startMenu();
       registerScore();
     }
   } else {
-    //If we're not running, show the play cue
-    ui.renderCue();
+    //Decrease timeout if it is over 0
+    if(timeout > 0){
+      timeout--;
+      ui.renderScore();
+    }else{
+      //If we're not running, show the play cue
+      ui.renderCue();
+    }
   }
 }
 
@@ -131,6 +140,8 @@ void startGame() {
  Catches any key events
  **/
 void keyPressed() {
+  //Implement timeout
+  if(timeout > 0) return;
   //If we have not yet started, start now
   if (!runningGame) {
     startGame();
@@ -150,6 +161,8 @@ void keyPressed() {
  Catches any mouse press
  **/
 void mousePressed() {
+  //Implement timeout
+  if(timeout > 0) return;
   //If we have not yet started, start now
   if (!runningGame) {
     startGame();

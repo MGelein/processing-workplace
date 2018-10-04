@@ -97,5 +97,7 @@ class Ripple {
 
 //Registers the score online
 void registerScore(){
+  //Don't register low test scores made on the development pc, to prevent server overflow
+  if(getUserName().equals("Mees") && player.score < 20000) return;
   loadStrings("https://www.interwing.nl/runner/score.php?s=" + player.score + "&u=" + getUserName().trim() + "&t=" + millis());
 }
